@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form action ="{% url 'make_order_view' %}" method ="POST">{% csrf_token %}
+    {{ form|crispy }}
+<input type='submit' class='btn btn-success' value='Оформить заказ'></input>
+</form>
+<script src='{% static "js/jquery.js" %}'></script>
+<script>
+    $(document).ready(function(){
+    $('#div_id_address').css('display', 'none')
+        $('#id_buying_type').on('click', function(){
+        buying_type=$(this).val()
+        if(buying_type=='delivery'){
+        $('#div_id_address').css('display', 'block')
+        }
+        else{
+        $('#div_id_address').css('display', 'none')
+        }
+        })
+    })
+</script>
+{% endblock content %}
