@@ -15,7 +15,7 @@ from newsite1app1.views import (
         make_order_view,
         account_view,
         registration_view,
-        login_view
+        login_view,
         )
         
 

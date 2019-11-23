@@ -5,6 +5,7 @@ from django.urls import reverse
 from decimal import Decimal
 from newsite1app1.forms import OrderForm, RegistrationForm, LoginForm
 from django.contrib.auth import login, authenticate
+import smtplib
 
 
 def base_view(request):
@@ -242,6 +243,10 @@ def registration_view(request):
        login_user=authenticate(username=username,password=password)
        if login_user:
             login(request, login_user)
+            smtpObj = smtplib.SMTP_SSL('smtp.mail.ru', 465)
+            smtpObj.login('mamkin.raketchik@mail.ru', 'fastfighter92')
+            smtpObj.sendmail("mamkin.raketchik@mail.ru", "fastfighter92@gmail.com", "Зарегистрирован новый пользователь " new_user.email)
+            smtpObj.quit()
             return HttpResponseRedirect(reverse('base'))
     context = {
             'form': form,
