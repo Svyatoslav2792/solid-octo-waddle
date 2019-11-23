@@ -9,6 +9,32 @@
 {% csrf_token %}
 {{ form|crispy }}
 <br>
-<input type='submit' class='btn btn-success btn-block' value='Зарегистрироваться' style='width:180px;'></input>
+
+ <head>
+    <title>reCAPTCHA demo: Explicit render after an onload callback</title>
+    <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LewpsMUAAAAAIzGKw3jXIRSEmCLHKNTMvUqETJd'
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <form action="?" method="POST">
+      <div id="html_element" data-callback="enableBtn">></div>
+      <br>
+      <input id="submitBtn" type='submit' class='btn btn-success btn-block' value='Зарегистрироваться' style='width:180px;' disabled></input>
+    </form>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+
+  <script type="text/javascript">
+      function enableBtn(){
+          $('#submitBtn').removeAttr('disabled');
+      }
+  </script>
+  </body>
 </form>
 {% endblock content %}
