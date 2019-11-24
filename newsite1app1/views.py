@@ -245,7 +245,7 @@ def registration_view(request):
             login(request, login_user)
             smtpObj = smtplib.SMTP_SSL('smtp.mail.ru', 465)
             smtpObj.login('mamkin.raketchik@mail.ru', 'fastfighter92')
-            smtpObj.sendmail("mamkin.raketchik@mail.ru", "fastfighter92@gmail.com", "Зарегистрирован новый пользователь " new_user.email)
+            smtpObj.sendmail("mamkin.raketchik@mail.ru", "fastfighter92@gmail.com", "New user added in database "+new_user.email)
             smtpObj.quit()
             return HttpResponseRedirect(reverse('base'))
     context = {
